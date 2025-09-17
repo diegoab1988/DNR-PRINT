@@ -1,9 +1,29 @@
 
 import { useState, useEffect } from 'react';
 import { Play, ArrowRight, Star, Zap, Shield, Clock } from 'lucide-react';
+import VideoModal from './VideoModal';
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+
+  const videos = [
+    {
+      src: "/images/hero/videos/hero_video.mp4",
+      title: "Bambu Lab A1 - Impressão Multicolor",
+      description: "Veja a A1 imprimindo em múltiplas cores"
+    },
+    {
+      src: "/images/hero/videos/hero_video2.mp4",
+      title: "Bambu Lab A1 Mini - Compacta e Eficiente", 
+      description: "A1 Mini em ação"
+    },
+    {
+      src: "/images/hero/videos/hero_video3.mp4",
+      title: "Recursos Avançados - Bambu Lab",
+      description: "Tecnologias e funcionalidades especiais"
+    }
+  ];
   
   const images = [
     {
@@ -92,7 +112,10 @@ const Hero = () => {
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
               </button>
               
-              <button className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center space-x-2">
+              <button 
+                onClick={() => setIsVideoModalOpen(true)}
+                className="group bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center space-x-2"
+              >
                 <Play className="h-5 w-5" />
                 <span>Ver Demonstração</span>
               </button>
@@ -176,6 +199,13 @@ const Hero = () => {
           <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videos={videos}
+      />
     </section>
   );
 };

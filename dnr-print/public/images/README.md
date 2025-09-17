@@ -5,9 +5,14 @@
 ### `/hero/`
 - **Finalidade**: Imagens para a seção Hero (principal)
 - **Sugestões**:
-  - `bambu-lab-a1-hero.jpg` - Imagem principal da impressora
+  - `hero.png` - Imagem principal da Bambu Lab A1
+  - `hero2.png` - Imagem da Bambu Lab A1 Mini
   - `hero-background.jpg` - Background opcional
-  - `printing-action.mp4` - Vídeo da impressora em ação
+
+### `/hero/videos/`
+- **Finalidade**: Vídeos para demonstração
+- **Sugestões**:
+  - `bambu-lab-demo.mp4` - Vídeo da impressora em funcionamento
 
 ### `/products/`
 - **Finalidade**: Imagens dos produtos/impressoras
