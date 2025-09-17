@@ -170,20 +170,7 @@ const Portfolio = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-12">
-          <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Tem um projeto em mente?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Transforme sua ideia em realidade com nossa expertise em impressão 3D.
-            </p>
-            <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-200">
-              Iniciar Meu Projeto
-            </button>
-          </div>
-        </div>
+
       </div>
     </section>
   );
