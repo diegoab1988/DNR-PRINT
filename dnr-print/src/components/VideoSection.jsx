@@ -1,38 +1,42 @@
 import { useState } from 'react';
-import { Play } from 'lucide-react';
-import VideoModal from './VideoModal';
+import { Play, Pause } from 'lucide-react';
 import thumb1 from '../assets/thumbnails/thumb1.png';
 import thumb2 from '../assets/thumbnails/thumb2.png';
 import thumb3 from '../assets/thumbnails/thumb3.png';
 
 const VideoSection = () => {
-  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+  const [playingVideo, setPlayingVideo] = useState(null);
 
   const videos = [
     {
       src: "/images/hero/videos/hero_video.mp4",
+      thumbnail: thumb1,
       title: "Bambu Lab A1 - Impressão Multicolor",
       description: "Veja a A1 imprimindo em múltiplas cores automaticamente",
       duration: "2:30"
     },
     {
       src: "/images/hero/videos/hero_video2.mp4",
+      thumbnail: thumb2,
       title: "Bambu Lab A1 Mini - Compacta e Eficiente", 
       description: "A1 Mini em ação - perfeita para espaços menores",
       duration: "1:45"
     },
     {
       src: "/images/hero/videos/hero_video3.mp4",
+      thumbnail: thumb3,
       title: "Recursos Avançados - Bambu Lab",
       description: "Tecnologias e funcionalidades que fazem a diferença",
       duration: "3:15"
     }
   ];
 
-  const openVideoModal = (index) => {
-    setSelectedVideoIndex(index);
-    setIsVideoModalOpen(true);
+  const toggleVideo = (index) => {
+    if (playingVideo === index) {
+      setPlayingVideo(null);
+    } else {
+      setPlayingVideo(index);
+    }
   };
 
   return (
@@ -48,77 +52,49 @@ const VideoSection = () => {
           </p>
         </div>
 
-        {/* Cards com Play Button Menor */}
+        {/* Cards com Vídeo Inline */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           
-          {/* Card 1 */}
-          <div 
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 cursor-pointer group"
-            onClick={() => openVideoModal(0)}
-          >
-            <img 
-              src={thumb1} 
-              alt="Thumbnail 1"
-              className="w-full h-auto transition-transform duration-300"
-            />
-            {/* Play Button Menor com Relevo e Brilho */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative">
-                {/* Brilho de fundo */}
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full blur-lg opacity-50 scale-125"></div>
-                {/* Botão menor com relevo */}
-                <div className="relative text-violet-600 p-3 rounded-full shadow-2xl group-hover:scale-110 transition-all duration-300 border-3 border-violet-600 bg-gradient-to-b from-white/30 to-white/10 backdrop-blur-sm">
-                  <Play className="h-8 w-8 ml-0.5 drop-shadow-lg" />
-                </div>
-              </div>
+          {videos.map((video, index) => (
+            <div 
+              key={index}
+              className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 cursor-pointer group"
+              onClick={() => toggleVideo(index)}
+            >
+              {/* Vídeo ou Thumbnail */}
+              {playingVideo === index ? (
+                <video
+                  className="w-full h-auto"
+                  controls
+                  autoPlay
+                  muted
+                  onEnded={() => setPlayingVideo(null)}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Seu navegador não suporta vídeo.
+                </video>
+              ) : (
+                <>
+                  <img 
+                    src={video.thumbnail} 
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-auto transition-transform duration-300"
+                  />
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="relative">
+                      {/* Brilho de fundo */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full blur-lg opacity-50 scale-125"></div>
+                      {/* Botão play */}
+                      <div className="relative text-violet-600 p-3 rounded-full shadow-2xl group-hover:scale-110 transition-all duration-300 border-3 border-violet-600 bg-gradient-to-b from-white/30 to-white/10 backdrop-blur-sm">
+                        <Play className="h-8 w-8 ml-0.5 drop-shadow-lg" />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          </div>
-
-          {/* Card 2 */}
-          <div 
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 cursor-pointer group"
-            onClick={() => openVideoModal(1)}
-          >
-            <img 
-              src={thumb2} 
-              alt="Thumbnail 2"
-              className="w-full h-auto transition-transform duration-300"
-            />
-            {/* Play Button Menor com Relevo e Brilho */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative">
-                {/* Brilho de fundo */}
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full blur-lg opacity-50 scale-125"></div>
-                {/* Botão menor com relevo */}
-                <div className="relative text-violet-600 p-3 rounded-full shadow-2xl group-hover:scale-110 transition-all duration-300 border-3 border-violet-600 bg-gradient-to-b from-white/30 to-white/10 backdrop-blur-sm">
-                  <Play className="h-8 w-8 ml-0.5 drop-shadow-lg" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div 
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 cursor-pointer group"
-            onClick={() => openVideoModal(2)}
-          >
-            <img 
-              src={thumb3} 
-              alt="Thumbnail 3"
-              className="w-full h-auto transition-transform duration-300"
-            />
-            {/* Play Button Menor com Relevo e Brilho */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative">
-                {/* Brilho de fundo */}
-                <div className="absolute inset-0 bg-gradient-to-r from-violet-400 to-purple-500 rounded-full blur-lg opacity-50 scale-125"></div>
-                {/* Botão menor com relevo */}
-                <div className="relative text-violet-600 p-3 rounded-full shadow-2xl group-hover:scale-110 transition-all duration-300 border-3 border-violet-600 bg-gradient-to-b from-white/30 to-white/10 backdrop-blur-sm">
-                  <Play className="h-8 w-8 ml-0.5 drop-shadow-lg" />
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
 
         </div>
 
@@ -138,13 +114,7 @@ const VideoSection = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        videos={videos}
-        initialIndex={selectedVideoIndex}
-      />
+
     </section>
   );
 };
