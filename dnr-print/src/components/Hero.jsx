@@ -89,16 +89,14 @@ const Hero = () => {
 
           {/* Visual */}
           <div className="relative">
-            {/* Placeholder for 3D printer image/animation */}
+            {/* Hero Image */}
             <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-violet-500/20 to-blue-500/20 rounded-2xl backdrop-blur-sm border border-white/10 flex items-center justify-center">
-                <div className="text-center text-white/60">
-                  <div className="w-32 h-32 mx-auto mb-4 bg-white/10 rounded-2xl flex items-center justify-center">
-                    <Zap className="h-16 w-16" />
-                  </div>
-                  <p className="text-lg font-medium">Bambu Lab A1 em Ação</p>
-                  <p className="text-sm">Vídeo/Imagem da Impressora</p>
-                </div>
+              <div className="w-full h-[500px] flex items-center justify-center">
+                <img 
+                  src="/images/hero/hero.png" 
+                  alt="Bambu Lab A1 - Impressora 3D"
+                  className="w-full h-full object-contain drop-shadow-2xl scale-150"
+                />
               </div>
 
               {/* Floating Elements */}
