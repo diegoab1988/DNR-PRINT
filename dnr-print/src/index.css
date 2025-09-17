@@ -6,3 +6,17 @@
 .font-poppins {
   font-family: 'Poppins', sans-serif;
 }
+
+/* Hero Carousel Animation */
+@keyframes fade-in-out {
+  0%, 45% {
+    opacity: 1;
+  }
+  55%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-in-out {
+  animation: fade-in-out 8s infinite;
+}

@@ -25,25 +25,25 @@ const Products = () => {
       badgeColor: "bg-violet-500"
     },
     {
-      name: "Bambu Lab X1 Carbon",
-      subtitle: "Impressora 3D Profissional",
-      price: "A partir de R$ 4.999",
+      name: "Bambu Lab A1 Mini",
+      subtitle: "Impressora 3D Compacta",
+      price: "A partir de R$ 1.999",
       image: "/api/placeholder/400/300",
       features: [
-        "Sistema AMS para 16 cores",
+        "Design compacto e portátil",
         "Velocidade até 500mm/s",
-        "Câmera integrada",
-        "Filtro de carvão ativado",
-        "Detecção de espaguete"
+        "Auto-calibração automática",
+        "Conectividade Wi-Fi",
+        "Interface touch intuitiva"
       ],
       specs: {
-        "Volume de Impressão": "256×256×256 mm",
+        "Volume de Impressão": "180×180×180 mm",
         "Precisão": "±0.1mm",
-        "Materiais": "PLA, PETG, ABS, PC, PA",
-        "Conectividade": "Wi-Fi, Ethernet, USB"
+        "Materiais": "PLA, PETG, ABS, TPU",
+        "Conectividade": "Wi-Fi, USB"
       },
-      badge: "Profissional",
-      badgeColor: "bg-blue-500"
+      badge: "Compacta",
+      badgeColor: "bg-green-500"
     }
   ];
 

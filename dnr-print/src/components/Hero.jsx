@@ -1,13 +1,41 @@
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Play, ArrowRight, Star, Zap, Shield, Clock } from 'lucide-react';
 
 const Hero = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  
+  const images = [
+    {
+      src: "/images/hero/hero.png",
+      alt: "Bambu Lab A1 - Impressora 3D",
+      title: "Bambu Lab A1",
+      subtitle: "Multicolor & Inteligente",
+      scale: "scale-150"
+    },
+    {
+      src: "/images/hero/hero2.png", 
+      alt: "Bambu Lab A1 Mini - Impressora 3D",
+      title: "Bambu Lab A1 Mini",
+      subtitle: "Compacta & Eficiente",
+      scale: "scale-110"
+    }
+  ];
+
   const features = [
     { icon: <Zap className="h-5 w-5" />, text: "Impressão até 500mm/s" },
     { icon: <Shield className="h-5 w-5" />, text: "Auto-calibração inteligente" },
     { icon: <Clock className="h-5 w-5" />, text: "Entrega em 24-48h" }
   ];
+
+  // Auto-rotate images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000); // Change every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <section className="relative bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white overflow-hidden">
@@ -89,14 +117,42 @@ const Hero = () => {
 
           {/* Visual */}
           <div className="relative">
-            {/* Hero Image */}
+            {/* Hero Image Carousel */}
             <div className="relative">
-              <div className="w-full h-[500px] flex items-center justify-center">
-                <img 
-                  src="/images/hero/hero.png" 
-                  alt="Bambu Lab A1 - Impressora 3D"
-                  className="w-full h-full object-contain drop-shadow-2xl scale-150"
-                />
+              <div className="w-full h-[500px] flex items-center justify-center relative overflow-hidden">
+                {images.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image.src} 
+                    alt={image.alt}
+                    className={`w-full h-full object-contain drop-shadow-2xl ${image.scale} absolute inset-0 transition-opacity duration-1000 ${
+                      index === currentImage ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Image Info */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+                <div className="bg-black/20 backdrop-blur-sm rounded-lg px-4 py-2 text-white">
+                  <h3 className="font-semibold">{images[currentImage].title}</h3>
+                  <p className="text-sm opacity-80">{images[currentImage].subtitle}</p>
+                </div>
+              </div>
+
+              {/* Indicators */}
+              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentImage 
+                        ? 'bg-violet-400 scale-125' 
+                        : 'bg-white/40 hover:bg-white/60'
+                    }`}
+                  />
+                ))}
               </div>
 
               {/* Floating Elements */}
