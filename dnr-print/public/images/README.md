@@ -12,7 +12,16 @@
 ### `/hero/videos/`
 - **Finalidade**: Vídeos para demonstração
 - **Sugestões**:
-  - `bambu-lab-demo.mp4` - Vídeo da impressora em funcionamento
+  - `hero_video.mp4` - Vídeo da Bambu Lab A1
+  - `hero_video2.mp4` - Vídeo da Bambu Lab A1 Mini
+  - `hero_video3.mp4` - Vídeo dos recursos avançados
+
+### `/hero/thumbnails/`
+- **Finalidade**: Thumbnails dos vídeos (prints/capturas)
+- **Sugestões**:
+  - `thumb1.jpg` - Thumbnail do hero_video.mp4
+  - `thumb2.jpg` - Thumbnail do hero_video2.mp4
+  - `thumb3.jpg` - Thumbnail do hero_video3.mp4
 
 ### `/products/`
 - **Finalidade**: Imagens dos produtos/impressoras

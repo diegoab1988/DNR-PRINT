@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const VideoModal = ({ isOpen, onClose, videos }) => {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+const VideoModal = ({ isOpen, onClose, videos, initialIndex = 0 }) => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(initialIndex);
+
+  // Update current video when modal opens with different initial index
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentVideoIndex(initialIndex);
+    }
+  }, [isOpen, initialIndex]);
 
   if (!isOpen || !videos || videos.length === 0) return null;
 
